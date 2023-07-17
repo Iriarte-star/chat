@@ -1,0 +1,23 @@
+npx sequelize-cli model:generate --name Conversations --attributes title:string,createBy:integer,conversationImage:string,'type:enum:{single,group}'
+
+npx sequelize-cli model:generate --name Messages --attributes conversationId:integer,content:text,senderId:integer
+
+npx sequelize-cli model:generate --name Participants --attributes userId:integer,conversationId:integer
+
+Users.hasMany(models.Conversatios, {foreignKey: 'createdBy'});
+Users.hasMany(models.Messages, {foreignKey: 'senderId'});
+Users.hasMany(models.Participants, {foreignKey: 'userID'});
+
+Conversatios.hasMany(models.Messages, {foreignKey: 'conversationId'});
+Conversatios.hasMany(models.Participants, {foreignKey: 'conversationId'});
+Conversatios.belongsTo(models.User, {foreignKey: 'createdBy'});
+Conversatios.hasMany(models.Participants, {foreignKey: 'conversationId'});
+
+Messages.belongsTo(models.Users, {foreignKey: 'SenderId'});
+Messages.belongsTo(models.Conversations, {foreignKey: 'coversationId'});
+
+Participants.belongsTo(models.Users, {foreignKey: 'userId'});
+Participants.belongsTo(models.Conversations, {foreignKey: 'conversationId'});
+
+npx sequelize-cli db:migrate
+npx sequelize-cli db:migrate:undo:all
