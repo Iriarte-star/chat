@@ -5,7 +5,7 @@ const {
   getConversationForUser,
   getConversationById
 } = require("../controllers/conversations.controllers");
-const authenticate = require("../middlewares/auth.middleware");
+const authenticate = require("../middlewers/auth.middleware");
 const router = Router();
 
 router.post("/conversations", authenticate, createConversation);
