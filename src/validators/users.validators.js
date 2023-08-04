@@ -1,5 +1,5 @@
 const { check } = require("express-validator");
-const validateResult = require("../middlewares/validate.middleware");
+const validateResult = require("../middlewers/validate.middleware");
 
 const loginUserValidator = [
   check("email", "error email")
