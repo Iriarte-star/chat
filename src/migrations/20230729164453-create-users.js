@@ -9,29 +9,36 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Id: {
-        type: Sequelize.INTEGER
-      },
       firstname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(30)
       },
       lastname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(30)
       },
       username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(30),
+        allowNull: false,
+        unique: true
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(50),
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true
+        }
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
+
       },
       profileImage: {
         type: Sequelize.STRING
       },
       validEmail: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

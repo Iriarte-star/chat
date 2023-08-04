@@ -11,20 +11,23 @@ module.exports = {
       },
       conversationId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "Conversations",
+          key: "id",
+        }
       },
       content: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
       },
       senderId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references:{
+        references: {
           model: "Users",
-          key: "id"
+          key: "id",
         }
-        
       },
       createdAt: {
         allowNull: false,

@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Participants.belongsTo(models.Users, {foreignKey: 'userId'});
+      Participants.belongsTo(models.Conversations, {
+        onDelete: "CASCADE",
+        foreignKey: 'conversationId'});
     }
   }
   Participants.init({
@@ -19,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Participants',
+    timestamps: false,
   });
   return Participants;
 };

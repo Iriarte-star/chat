@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Conversations extends Model {
     /**
@@ -11,16 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Conversations.hasMany(models.Messages, { foreignKey: "conversationId" });
+      Conversations.hasMany(models.Participants, {
+        onDelete: "CASCADE",
+        foreignKey: "conversationId",
+      });
+      Conversations.belongsTo(models.Users, { foreignKey: "createdBy" });
     }
   }
-  Conversations.init({
-    title: DataTypes.STRING,
-    createBy: DataTypes.INTEGER,
-    conversationImage: DataTypes.STRING,
-    type: DataTypes.ENUM('single', 'group')
-  }, {
-    sequelize,
-    modelName: 'Conversations',
-  });
+  Conversations.init(
+    {
+      title: DataTypes.STRING,
+      createdBy: DataTypes.INTEGER,
+      conversationsImage: DataTypes.STRING,
+      type: DataTypes.ENUM("single", "group"),
+    },
+    {
+      sequelize,
+      modelName: "Conversations",
+    }
+  );
   return Conversations;
 };

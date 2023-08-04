@@ -12,7 +12,7 @@ module.exports = {
       title: {
         type: Sequelize.STRING(30)
       },
-      createBy: {
+      createdBy: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -20,13 +20,13 @@ module.exports = {
           key: "id",
         }
       },
-      conversationImage: {
+      conversationsImage: {
         type: Sequelize.STRING,
-        defaultValue: 'https://img.freepik.com/free-icon/user_318-563642.jpg'
+        defaultValue: 'https://www.eclosio.ong/wp-content/uploads/2018/08/default.png'
       },
       type: {
         type: Sequelize.ENUM('single', 'group'),
-        defaultValue: 'sigle'
+        defaultValue: 'single'
       },
       createdAt: {
         allowNull: false,
